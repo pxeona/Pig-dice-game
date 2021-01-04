@@ -74,6 +74,12 @@ hold.addEventListener("click", function () {
     const finalScore = Number(p1FinalScore.textContent);
     p1FinalScore.textContent = finalScore + currScore;
     if (currScore + finalScore >= 100) {
+      const anim = window.setInterval(function () {
+        winnerAnim(1);
+      }, 500);
+      setTimeout(() => {
+        clearInterval(anim);
+      }, 3000);
       winP1.classList.remove("hidden");
       playing = 2;
     } else {
@@ -87,6 +93,12 @@ hold.addEventListener("click", function () {
     const finalScore = Number(p2FinalScore.textContent);
     p2FinalScore.textContent = finalScore + currScore;
     if (currScore + finalScore >= 100) {
+      anim = setInterval(function () {
+        winnerAnim(2);
+      }, 500);
+      setTimeout(() => {
+        clearInterval(anim);
+      }, 3000);
       winP2.classList.remove("hidden");
       playing = 2;
     } else {
@@ -97,5 +109,21 @@ hold.addEventListener("click", function () {
     }
   }
 });
+
+const winnerAnim = function (playerNum) {
+  if (playerNum == 1) {
+    if (p1.classList.contains("active")) {
+      p1.classList.remove("active");
+    } else {
+      p1.classList.add("active");
+    }
+  } else {
+    if (p2.classList.contains("active")) {
+      p2.classList.remove("active");
+    } else {
+      p2.classList.add("active");
+    }
+  }
+};
 
 newGame.addEventListener("click", init);
