@@ -39,6 +39,14 @@ const init = function () {
   winP2.classList.add("hidden");
 };
 
+const switchPlayer = function () {
+  playing = playing === 0 ? 1 : 0;
+  p1CurrentScore.textContent = 0;
+  p2CurrentScore.textContent = 0;
+  p1.classList.toggle("active");
+  p2.classList.toggle("active");
+};
+
 init();
 
 rollDice.addEventListener("click", function () {
@@ -50,20 +58,14 @@ rollDice.addEventListener("click", function () {
       const currScore = Number(p1CurrentScore.textContent);
       p1CurrentScore.textContent = randomNum + currScore;
     } else {
-      p1CurrentScore.textContent = 0;
-      playing = 1;
-      p1.classList.remove("active");
-      p2.classList.add("active");
+      switchPlayer();
     }
   } else if (playing == 1) {
     if (randomNum != 1) {
       const currScore = Number(p2CurrentScore.textContent);
       p2CurrentScore.textContent = randomNum + currScore;
     } else {
-      p2CurrentScore.textContent = 0;
-      playing = 0;
-      p2.classList.remove("active");
-      p1.classList.add("active");
+      switchPlayer();
     }
   }
 });
@@ -83,10 +85,7 @@ hold.addEventListener("click", function () {
       winP1.classList.remove("hidden");
       playing = 2;
     } else {
-      p1CurrentScore.textContent = 0;
-      playing = 1;
-      p1.classList.remove("active");
-      p2.classList.add("active");
+      switchPlayer();
     }
   } else if (playing == 1) {
     const currScore = Number(p2CurrentScore.textContent);
@@ -102,10 +101,7 @@ hold.addEventListener("click", function () {
       winP2.classList.remove("hidden");
       playing = 2;
     } else {
-      p2CurrentScore.textContent = 0;
-      playing = 0;
-      p2.classList.remove("active");
-      p1.classList.add("active");
+      switchPlayer();
     }
   }
 });
