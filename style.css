@@ -15,18 +15,65 @@ main {
   width: 75%;
   height: 90%;
   display: flex;
-}
-
-#player1 {
   background-color: white;
-  height: 100%;
-  width: 50%;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 1rem;
 }
 
-#player2 {
-  background-color: black;
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.player {
+  background-color: none;
   height: 100%;
   width: 50%;
-  border-radius: 0px 15px 15px 0px;
+}
+
+.current {
+  display: inherit;
+  flex-direction: column;
+  width: 150px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  border-radius: 10px;
+}
+
+button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #444;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.2s;
+
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+
+  padding: 0.7rem 2.5rem;
+  border-radius: 50rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+}
+
+#newGame {
+  top: 7rem;
+}
+
+#rollDice {
+  top: 25rem;
+}
+
+#hold {
+  top: 35rem;
 }
