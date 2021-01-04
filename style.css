@@ -34,6 +34,7 @@ main {
   background-color: none;
   height: 100%;
   width: 50%;
+  transition: all 0.5s;
 }
 
 .nameAndScore {
@@ -113,4 +114,12 @@ button:active {
   width: 5rem;
   top: 13rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.4);
 }
