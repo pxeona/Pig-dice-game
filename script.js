@@ -6,6 +6,8 @@ const p1CurrentScore = document.querySelector("#p1CurrentScore");
 const p2CurrentScore = document.querySelector("#p2CurrentScore");
 const p1 = document.getElementById("p1");
 const p2 = document.getElementById("p2");
+const winP1 = document.querySelector("#winP1");
+const winP2 = document.querySelector("#winP2");
 
 const newGame = document.getElementById("newGame");
 const rollDice = document.getElementById("rollDice");
@@ -25,7 +27,7 @@ rollDice.addEventListener("click", function () {
   const randomNum = Math.trunc(Math.random() * 6) + 1;
   dice.src = `dice-${randomNum}.png`;
   dice.classList.remove("hidden");
-  if (!playing) {
+  if (playing == 0) {
     if (randomNum != 1) {
       const currScore = Number(p1CurrentScore.textContent);
       p1CurrentScore.textContent = randomNum + currScore;
@@ -35,7 +37,7 @@ rollDice.addEventListener("click", function () {
       p1.classList.remove("active");
       p2.classList.add("active");
     }
-  } else {
+  } else if (playing == 1) {
     if (randomNum != 1) {
       const currScore = Number(p2CurrentScore.textContent);
       p2CurrentScore.textContent = randomNum + currScore;
@@ -49,21 +51,29 @@ rollDice.addEventListener("click", function () {
 });
 
 hold.addEventListener("click", function () {
-  if (!playing) {
+  if (playing == 0) {
     const currScore = Number(p1CurrentScore.textContent);
     const finalScore = Number(p1FinalScore.textContent);
-    p1FinalScore.textContent = finalScore + currScore;
-    p1CurrentScore.textContent = 0;
-    playing = 1;
-    p1.classList.remove("active");
-    p2.classList.add("active");
-  } else {
+    if (currScore + finalScore >= 100) {
+      playing = 2;
+    } else {
+      p1FinalScore.textContent = finalScore + currScore;
+      p1CurrentScore.textContent = 0;
+      playing = 1;
+      p1.classList.remove("active");
+      p2.classList.add("active");
+    }
+  } else if (playing == 1) {
     const currScore = Number(p2CurrentScore.textContent);
     const finalScore = Number(p2FinalScore.textContent);
-    p2FinalScore.textContent = finalScore + currScore;
-    p2CurrentScore.textContent = 0;
-    playing = 0;
-    p2.classList.remove("active");
-    p1.classList.add("active");
+    if (currScore + finalScore >= 100) {
+      playing = 2;
+    } else {
+      p2FinalScore.textContent = finalScore + currScore;
+      p2CurrentScore.textContent = 0;
+      playing = 0;
+      p2.classList.remove("active");
+      p1.classList.add("active");
+    }
   }
 });
