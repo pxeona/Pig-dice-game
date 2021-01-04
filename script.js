@@ -93,7 +93,7 @@ hold.addEventListener("click", function () {
     const finalScore = Number(p2FinalScore.textContent);
     p2FinalScore.textContent = finalScore + currScore;
     if (currScore + finalScore >= 100) {
-      anim = setInterval(function () {
+      const anim = setInterval(function () {
         winnerAnim(2);
       }, 500);
       setTimeout(() => {
