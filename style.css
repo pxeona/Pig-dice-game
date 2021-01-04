@@ -104,3 +104,13 @@ button:active {
   transform: translate(-50%, 3px);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
+
+.dice {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5rem;
+  width: 5rem;
+  top: 13rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
