@@ -13,15 +13,33 @@ const newGame = document.getElementById("newGame");
 const rollDice = document.getElementById("rollDice");
 const hold = document.getElementById("hold");
 const dice = document.querySelector(".dice");
+let p1FScore;
+let p2FScore;
+let p1CScore;
+let p2CScore;
+let playing;
 
-let p1FScore = 0;
-let p2FScore = 0;
-let p1CScore = 0;
-let p2CScore = 0;
-let playing = 0;
+const init = function () {
+  p1FScore = 0;
+  p2FScore = 0;
+  p1CScore = 0;
+  p2CScore = 0;
+  playing = 0;
 
-p1.classList.add("active");
-dice.classList.add("hidden");
+  p1FinalScore.textContent = 0;
+  p2FinalScore.textContent = 0;
+  p1CurrentScore.textContent = 0;
+  p2CurrentScore.textContent = 0;
+
+  p1.classList.add("active");
+  dice.classList.add("hidden");
+
+  p2.classList.remove("active");
+  winP1.classList.add("hidden");
+  winP2.classList.add("hidden");
+};
+
+init();
 
 rollDice.addEventListener("click", function () {
   const randomNum = Math.trunc(Math.random() * 6) + 1;
@@ -54,10 +72,11 @@ hold.addEventListener("click", function () {
   if (playing == 0) {
     const currScore = Number(p1CurrentScore.textContent);
     const finalScore = Number(p1FinalScore.textContent);
+    p1FinalScore.textContent = finalScore + currScore;
     if (currScore + finalScore >= 100) {
+      winP1.classList.remove("hidden");
       playing = 2;
     } else {
-      p1FinalScore.textContent = finalScore + currScore;
       p1CurrentScore.textContent = 0;
       playing = 1;
       p1.classList.remove("active");
@@ -66,10 +85,11 @@ hold.addEventListener("click", function () {
   } else if (playing == 1) {
     const currScore = Number(p2CurrentScore.textContent);
     const finalScore = Number(p2FinalScore.textContent);
+    p2FinalScore.textContent = finalScore + currScore;
     if (currScore + finalScore >= 100) {
+      winP2.classList.remove("hidden");
       playing = 2;
     } else {
-      p2FinalScore.textContent = finalScore + currScore;
       p2CurrentScore.textContent = 0;
       playing = 0;
       p2.classList.remove("active");
@@ -77,3 +97,5 @@ hold.addEventListener("click", function () {
     }
   }
 });
+
+newGame.addEventListener("click", init);
